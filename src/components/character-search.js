@@ -25,12 +25,19 @@ export class CharacterSearch extends React.Component {
         );
     }
 
+    search(e){
+      e.preventDefault();
+      if (this.input.value.trim() === ''){
+        return;
+      }
+      this.props.dispatch(searchCharacters(this.input.value));
+    }
+
     render() {
         return (
             <div className="character-search">
-                {/* When this form is submitted you should submit the
-                    searchArtists action */}
-                <form>
+                <h1> Search for your favorite Star Wars Character!</h1>
+                <form onSubmit={(e) => this.search(e)}>
                     <input type="search" ref={input => this.input = input} />
                     <button>Search</button>
                 </form>
